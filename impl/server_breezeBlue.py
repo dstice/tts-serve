@@ -648,9 +648,9 @@ def synthesize(req: SynthesisRequest) -> SynthesisResponse:
     }
     if instruction is not None:
         request["instruction"] = instruction
-    template_name = select_template_name(request)
 
     try:
+        template_name = select_template_name(request)
         t0 = time.perf_counter()
 
         with _synthesis_lock:
