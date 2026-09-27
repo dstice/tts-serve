@@ -333,10 +333,10 @@ class SynthesisRequest(BaseModel):
         # fail deep inside prepare_inputs() as a 500.  Reject the
         # combination at the boundary instead (422, like the other
         # client-side configuration errors on this server).
-        if self.cfg_scale != 1.0 and self.instruction is None:
+        if self.cfg_scale != DEFAULT_CFG_SCALE and self.instruction is None:
             raise ValueError(
-                "cfg_scale != 1.0 requires an instruction (voice-direction "
-                "mode); plain voice cloning only runs at cfg_scale = 1.0"
+                f"cfg_scale != {DEFAULT_CFG_SCALE} requires an instruction (voice-direction "
+                f"mode); plain voice cloning only runs at cfg_scale = {DEFAULT_CFG_SCALE}"
             )
         return self
 
